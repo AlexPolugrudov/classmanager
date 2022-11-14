@@ -42,6 +42,13 @@ public class TeacherService {
         return teacherDtoFactory.makeTeacherDto(teacher);
     }
 
+    //TODO: добавить создание учителя
+    @Transactional
+    public TeacherDto createTeacher(TeacherDto teacherDto) {
+        //Заглушка
+        return null;
+    }
+
     //Изменение НЕ персональной информации
     @Transactional
     public TeacherDto editTeacher(int teacherId, Optional<Subject> updatedSubject, Optional<Class> updatedClass) {
