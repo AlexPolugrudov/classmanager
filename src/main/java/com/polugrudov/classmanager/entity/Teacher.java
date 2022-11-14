@@ -1,10 +1,7 @@
 package com.polugrudov.classmanager.entity;
 
 import com.polugrudov.classmanager.exception.BadRequestException;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
