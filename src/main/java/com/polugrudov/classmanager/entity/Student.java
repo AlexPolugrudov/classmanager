@@ -22,10 +22,10 @@ public class Student {
     private int id;
 
     @OneToOne
-    private People people;
+    private PersonalInformation personalInformation;
 
     @ManyToOne
-    private Class aClass;
+    private Classname aClass;
 
     @ManyToMany
     @JoinColumn(name = "student_id")

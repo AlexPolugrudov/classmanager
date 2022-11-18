@@ -10,6 +10,9 @@ import com.polugrudov.classmanager.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Component
 public class ControllerHelper {
@@ -38,5 +41,18 @@ public class ControllerHelper {
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Subject with \"%s\" doesn't exist", subjectId)
                 ));
+    }
+
+    public Class getClassOrThrowException(String className) {
+
+        Character[] charClassname = new Character[className.length()];
+        int digit;
+        int letter;
+
+        if (charClassname.length == 3) {
+
+        }
+        //TODO: убрать заглушку
+        return null;
     }
 }

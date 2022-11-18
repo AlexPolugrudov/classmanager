@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "class")
-public class Class {
+public class Classname {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -30,7 +30,7 @@ public class Subject {
     private List<Teacher> teachers;
 
     @ManyToMany(mappedBy = "subjects")
-    private List<Class> aClass;
+    private List<Classname> aClass;
 
     @ManyToMany(mappedBy = "subjects")
     private List<Student> students;

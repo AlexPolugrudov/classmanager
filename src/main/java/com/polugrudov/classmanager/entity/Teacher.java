@@ -19,13 +19,13 @@ public class Teacher {
     private int id;
 
     @OneToOne
-    private People people;
+    private PersonalInformation personalInformation;
 
     @ManyToOne
     private Subject subjectName;
 
     @ManyToMany
-    private List<Class> classes;
+    private List<Classname> classes;
 
 
     public void updateHomework(String updatedHomework) {

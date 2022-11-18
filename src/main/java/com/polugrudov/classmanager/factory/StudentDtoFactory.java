@@ -10,7 +10,7 @@ public class StudentDtoFactory {
     public StudentDto makeStudentDto(Student student) {
         return StudentDto.builder()
                 .id(student.getId())
-                .people(student.getPeople())
+                .personalInformation(student.getPersonalInformation())
                 .aClass(student.getAClass())
                 .subjects(student.getSubjects())
                 .build();

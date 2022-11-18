@@ -1,6 +1,6 @@
 package com.polugrudov.classmanager.dto;
 
-import com.polugrudov.classmanager.entity.Class;
+import com.polugrudov.classmanager.entity.Classname;
 import com.polugrudov.classmanager.entity.Teacher;
 import lombok.*;
 
@@ -20,6 +20,6 @@ public class SubjectDto {
 
     private List<Teacher> teachers;
 
-    private List<Class> classes;
+    private List<Classname> classes;
 
 }

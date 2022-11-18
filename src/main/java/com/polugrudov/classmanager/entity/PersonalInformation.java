@@ -19,10 +19,6 @@ public class PersonalInformation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "people_id",referencedColumnName = "id", unique = true)
-    private People people;
-
     @Column(name = "name")
     private String fio;
 

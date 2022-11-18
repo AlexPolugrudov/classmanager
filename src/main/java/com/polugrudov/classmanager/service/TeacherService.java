@@ -3,13 +3,10 @@ package com.polugrudov.classmanager.service;
 import com.polugrudov.classmanager.controller.helper.ControllerHelper;
 import com.polugrudov.classmanager.dto.AskDto;
 import com.polugrudov.classmanager.dto.TeacherDto;
-import com.polugrudov.classmanager.entity.Class;
-import com.polugrudov.classmanager.entity.Student;
+import com.polugrudov.classmanager.entity.Classname;
 import com.polugrudov.classmanager.entity.Subject;
 import com.polugrudov.classmanager.entity.Teacher;
-import com.polugrudov.classmanager.exception.NotFoundException;
 import com.polugrudov.classmanager.factory.TeacherDtoFactory;
-import com.polugrudov.classmanager.repository.ClassRepository;
 import com.polugrudov.classmanager.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,16 +39,29 @@ public class TeacherService {
         return teacherDtoFactory.makeTeacherDto(teacher);
     }
 
+    public List<Teacher> findAll() {
+        return teacherRepository.findAll();
+    }
+
+    public TeacherDto saveTeacher(TeacherDto teacherDto) {
+        Teacher teacher = teacherDtoConvertToTeacherEntity(teacherDto);
+
+        teacherRepository.saveAndFlush(teacher);
+
+        return teacherDtoFactory.makeTeacherDto(teacher);
+    }
+
     //TODO: добавить создание учителя
     @Transactional
     public TeacherDto createTeacher(TeacherDto teacherDto) {
-        //Заглушка
-        return null;
+        Teacher teacher = teacherDtoConvertToTeacherEntity(teacherDto);
+        teacherRepository.saveAndFlush(teacher);
+        return teacherDtoFactory.makeTeacherDto(teacher);
     }
 
     //Изменение НЕ персональной информации
     @Transactional
-    public TeacherDto editTeacher(int teacherId, Optional<Subject> updatedSubject, Optional<Class> updatedClass) {
+    public TeacherDto editTeacher(int teacherId, Optional<Subject> updatedSubject, Optional<Classname> updatedClass) {
         Teacher teacher = controllerHelper.getTeacherOrThrowException(teacherId);
 
         if (updatedSubject.isPresent()) {
@@ -60,9 +70,9 @@ public class TeacherService {
             teacher.setSubjectName(subject);
         }
         if (updatedClass.isPresent()) {
-            List<Class> classes = teacher.getClasses();
+            List<Classname> classes = teacher.getClasses();
 
-            Class newClass = updatedClass.get();
+            Classname newClass = updatedClass.get();
 
             classes.add(newClass);
         }
@@ -102,4 +112,13 @@ public class TeacherService {
         return null;
     }
 
+    private Teacher teacherDtoConvertToTeacherEntity(TeacherDto teacherDto) {
+        Teacher teacher = new Teacher();
+
+        teacher.setPersonalInformation(teacherDto.getPersonalInformation());
+        teacher.setSubjectName(teacherDto.getSubjectName());
+        teacher.setClasses(teacherDto.getClasses());
+
+        return teacher;
+    }
 }

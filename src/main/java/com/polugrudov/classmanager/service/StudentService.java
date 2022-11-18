@@ -3,7 +3,7 @@ package com.polugrudov.classmanager.service;
 import com.polugrudov.classmanager.controller.helper.ControllerHelper;
 import com.polugrudov.classmanager.dto.AskDto;
 import com.polugrudov.classmanager.dto.StudentDto;
-import com.polugrudov.classmanager.entity.Class;
+import com.polugrudov.classmanager.entity.Classname;
 import com.polugrudov.classmanager.entity.Student;
 import com.polugrudov.classmanager.entity.Subject;
 import com.polugrudov.classmanager.factory.StudentDtoFactory;
@@ -39,12 +39,16 @@ public class StudentService {
         );
     }
 
+    public List<Student> findAll() {
+        return studentRepository.findAll();
+    }
+
     @Transactional
     public StudentDto createStudent(StudentDto studentDto) {
         Student newStudent = new Student();
 
         newStudent.setId(studentDto.getId());
-        newStudent.setPeople(studentDto.getPeople());
+        newStudent.setPersonalInformation(studentDto.getPersonalInformation());
         newStudent.setAClass(studentDto.getAClass());
         newStudent.setSubjects(studentDto.getSubjects());
 
@@ -56,7 +60,7 @@ public class StudentService {
     //TODO: Добавить изменение ПИ в соответствующий сервис(Персональ. информация)
     //Изменение НЕ персональной информации
     @Transactional
-    public StudentDto editStudent(int studentId, Optional<Subject> optionalSubject, Optional<Class> optionalClass) {
+    public StudentDto editStudent(int studentId, Optional<Subject> optionalSubject, Optional<Classname> optionalClass) {
 
         Student student = controllerHelper.getStudentOrThrowException(studentId);
 

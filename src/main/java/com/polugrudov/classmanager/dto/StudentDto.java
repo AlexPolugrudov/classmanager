@@ -1,8 +1,8 @@
 package com.polugrudov.classmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.polugrudov.classmanager.entity.Class;
-import com.polugrudov.classmanager.entity.People;
+import com.polugrudov.classmanager.entity.Classname;
+import com.polugrudov.classmanager.entity.PersonalInformation;
 import com.polugrudov.classmanager.entity.Subject;
 import lombok.*;
 
@@ -18,11 +18,11 @@ public class StudentDto {
     private int id;
 
     @NonNull
-    private People people;
+    private PersonalInformation personalInformation;
 
     @NonNull
     @JsonProperty("class_name")
-    private Class aClass;
+    private Classname aClass;
 
     @NonNull
     private List<Subject> subjects;
